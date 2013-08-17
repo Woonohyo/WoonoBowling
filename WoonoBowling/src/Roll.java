@@ -31,4 +31,15 @@ public class Roll {
 		char score = (char)(pinDown + 48);
 		return new Roll(score);
 	}
+
+	public int getIntScore() {
+		return (int)(score - 48);
+	}
+
+	public boolean isStrike() {
+		if (this.score == 'X')
+			return true;
+		else
+			return false;
+	}
 }

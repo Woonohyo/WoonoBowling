@@ -12,7 +12,7 @@ public class BowlingGameTest extends TestCase {
 	public void testCreate() throws Exception {
 		assertEquals(1, game.getCurrentFrame()); assertEquals(1, game.getCurrentRoll());
 	}
-
+	
 	// 공을 던지는 메소드 Roll에 의해 프레임과 투구수가 제대로 작동하는지 테스트합니다.
 	// 스트라이크, 스페어, 거터 등,
 	// 각종 케이스에 대해서도 제대로 작동하는지 확인합니다.
@@ -40,13 +40,5 @@ public class BowlingGameTest extends TestCase {
 		game.roll(0);
 		assertEquals(5, game.getCurrentFrame()); assertEquals(2, game.getCurrentRoll());
 		game.roll(10);
-		
-		game.getTable();
-	}
-	
-	
-	public void testScore() throws Exception {
-		game.roll(3);
-		game.roll(7);
 	}
 }

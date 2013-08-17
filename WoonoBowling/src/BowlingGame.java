@@ -13,7 +13,7 @@ public class BowlingGame {
 	private Frame frame;
 
 	// 2차원 배열을 이용하면 너무 복잡할 것 같아서, ArrayList로 다시 구현합니다.
-	private List<Frame> scoreBoard = new ArrayList<>();
+	private List<List<Roll>> Frames = new ArrayList<>();
 
 	// 상단의 2차원 배열 (frame, roll)을 Key값으로 갖고, 스코어를 value로 갖는 hashmap입니다.
 	private Map<Object, Character> scoreTable = new HashMap<Object, Character>();
@@ -42,7 +42,7 @@ public class BowlingGame {
 
 		if (currentRoll == 1 && pinDown == 10) {
 			System.out.println("대단해요! 스트라이크입니다!");
-			scoreBoard.add(frame.generateStrike(currentFrame, currentRoll));
+			Frames.add(currentFrame, frame.generateStrike());
 			goNextFrame();
 		}
 
@@ -72,10 +72,6 @@ public class BowlingGame {
 		else {
 			goNextRoll();
 		}
-	}
-
-	private void generateStrike() {
-
 	}
 
 	private void goNextRoll() {
