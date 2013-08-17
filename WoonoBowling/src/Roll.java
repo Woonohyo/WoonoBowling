@@ -2,7 +2,7 @@
 public class Roll {
 	private char score;
 
-	private Roll() {
+	Roll() {
 		this.score = ' ';
 	}
 	
@@ -21,5 +21,9 @@ public class Roll {
 
 	public static Roll generateSpare(int frame, int roll) {
 		return new Roll('/');
+	}
+
+	public static Roll generateGutter(int frame, int roll) {
+		return new Roll('-');
 	}
 }
