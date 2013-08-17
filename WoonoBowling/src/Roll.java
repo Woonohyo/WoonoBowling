@@ -10,20 +10,25 @@ public class Roll {
 		this.score = score;
 	}
 	
-	public static Roll generateStrike(int frame, int roll) {
+	public static Roll generateStrike() {
 		return new Roll('X');
+	}
+
+
+	public static Roll generateSpare() {
+		return new Roll('/');
+	}
+
+	public static Roll generateGutter() {
+		return new Roll('-');
 	}
 
 	public char getScore() {
 		return this.score;
-		
 	}
 
-	public static Roll generateSpare(int frame, int roll) {
-		return new Roll('/');
-	}
-
-	public static Roll generateGutter(int frame, int roll) {
-		return new Roll('-');
+	public static Roll pinDown(int pinDown) {
+		char score = (char)(pinDown + 48);
+		return new Roll(score);
 	}
 }
