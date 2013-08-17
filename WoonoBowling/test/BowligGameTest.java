@@ -12,6 +12,7 @@ public class BowligGameTest extends TestCase {
 	
 	public void testCreate() throws Exception {
 		assertEquals(1, game.getCurrentFrame());
+		assertEquals(1, game.getCurrentRoll());
 	}
 
 }
