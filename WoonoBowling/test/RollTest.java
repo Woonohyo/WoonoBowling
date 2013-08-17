@@ -11,4 +11,9 @@ public class RollTest extends TestCase {
 		Roll spare = new Spare();
 		assertEquals('/', spare.getSymbol());
 	}
+	
+	public void testGutter() throws Exception {
+		Roll gutter = new Gutter();
+		assertEquals('-', gutter.getSymbol());
+	}
 }
