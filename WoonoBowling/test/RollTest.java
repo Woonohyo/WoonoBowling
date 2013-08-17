@@ -21,9 +21,8 @@ public class RollTest extends TestCase {
 		assertEquals('-', gutter.getSymbol());
 	}
 	
-	public void testRegularShot() throws Exception {
+	public void testCreate() throws Exception {
 		Roll roll1 = new Roll(7);
 		assertEquals('7', roll1.getSymbol());
-		
 	}
 }
