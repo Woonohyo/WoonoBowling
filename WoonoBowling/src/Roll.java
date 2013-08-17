@@ -33,7 +33,10 @@ public class Roll {
 	}
 
 	public int getIntScore() {
-		return (int)(score - 48);
+		if (score == ' ')
+			return 0;
+		else 
+			return (int)(score - 48);
 	}
 
 	public boolean isStrike() {

@@ -21,10 +21,8 @@ public class Frame {
 			return frameScore = 10;
 		else 
 			this.frameScore = Rolls.get(0).getIntScore() + Rolls.get(1).getIntScore();
+		
 		return frameScore;
 	}
 
-	public void setEmpty() {
-		this.frameScore = 0;
-	}
 }
