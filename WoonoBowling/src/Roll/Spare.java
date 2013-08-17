@@ -1,6 +1,8 @@
+package Roll;
+
 
 public class Spare extends Roll {
-	Spare() {
+	public Spare() {
 		super.symbol = '/';
 	}
 }

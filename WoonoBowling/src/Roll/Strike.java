@@ -1,3 +1,5 @@
+package Roll;
+
 
 public class Strike extends Roll {
 	public Strike() {

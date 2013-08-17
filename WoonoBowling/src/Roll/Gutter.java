@@ -1,6 +1,8 @@
+package Roll;
+
 
 public class Gutter extends Roll {
-	Gutter() {
+	public Gutter() {
 		super.symbol = '-';
 	}
 }
