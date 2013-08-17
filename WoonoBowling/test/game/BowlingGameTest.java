@@ -1,3 +1,4 @@
+package game;
 import junit.framework.TestCase;
 
 

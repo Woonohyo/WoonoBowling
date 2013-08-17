@@ -1,9 +1,10 @@
-package Roll;
+package roll;
 
 public class Roll {
 	protected char symbol;
 	
 	public Roll() {
+		symbol = ' ';
 	}
 
 	public Roll(int pinDown) {
@@ -12,5 +13,12 @@ public class Roll {
 
 	public char getSymbol() {
 		return symbol;
+	}
+
+	public boolean isStrike() {
+		if ( symbol == 'X' )
+			return true;
+		else 
+			return false;
 	}
 }

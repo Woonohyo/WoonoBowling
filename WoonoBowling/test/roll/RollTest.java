@@ -1,7 +1,8 @@
-import Roll.Gutter;
-import Roll.Roll;
-import Roll.Spare;
-import Roll.Strike;
+package roll;
+import roll.Gutter;
+import roll.Roll;
+import roll.Spare;
+import roll.Strike;
 import junit.framework.TestCase;
 
 
