@@ -18,4 +18,8 @@ public class Roll {
 		return this.score;
 		
 	}
+
+	public static Roll generateSpare(int frame, int roll) {
+		return new Roll('/');
+	}
 }
