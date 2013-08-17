@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BowlingGame {
@@ -7,17 +9,14 @@ public class BowlingGame {
 	private int currentRoll;
 	private int currentPin;
 	private int totalRoll = 0;
+	private Roll roll;
+	private Frame frame;
 
-	// (currentFrame, currentRoll)
-	// 편의를 위해 실제 프레임/투구수와 2차원 배열 내에 위치하는 [][]의 숫자는 동일하게 설정합니다.
-	// 따라서 2차원 배열의 크기는 [0][0]을 제외하기 때문에 [11][4]가 됩니다.
-	private int[][] frameRoll = new int[11][4];
+	// 2차원 배열을 이용하면 너무 복잡할 것 같아서, ArrayList로 다시 구현합니다.
+	private List<Frame> scoreBoard = new ArrayList<>();
 
-	// 2차원 배열 (frame, roll)을 Key값으로 갖고, 스코어를 value로 갖는 hashmap입니다.
+	// 상단의 2차원 배열 (frame, roll)을 Key값으로 갖고, 스코어를 value로 갖는 hashmap입니다.
 	private Map<Object, Character> scoreTable = new HashMap<Object, Character>();
-
-	// Frame을 Key값을 갖고, 스코어를 value로 갖는 hashmap입니다.
-	private Map<Integer, Integer> frameScore = new HashMap<Integer, Integer>();
 
 	public BowlingGame() {
 		currentFrame = 1;
@@ -38,12 +37,12 @@ public class BowlingGame {
 		System.out.println("공을 굴립니다! 데구르르르....");
 		totalRoll++;
 		currentPin = currentPin - pinDown;
-		
+
 		System.out.println(pinDown + "핀을 쳤습니다!");
-		
+
 		if (currentRoll == 1 && pinDown == 10) {
 			System.out.println("대단해요! 스트라이크입니다!");
-			putScoreTable('X');
+			scoreBoard.add(frame.generateStrike(currentFrame, currentRoll));
 			goNextFrame();
 		}
 
@@ -52,21 +51,21 @@ public class BowlingGame {
 			putScoreTable('/');
 			goNextFrame();
 		}
-		
-		else if ( currentRoll == 1 && pinDown == 0 ) {
+
+		else if (currentRoll == 1 && pinDown == 0) {
 			System.out.println("초구부터 거터라니ㅠ");
 			putScoreTable('-');
 			goNextRoll();
 		}
-		
-		else if ( currentRoll == 2 && pinDown == 0 ) {
+
+		else if (currentRoll == 2 && pinDown == 0) {
 			System.out.println("두번째가 거터라니. 슬프네요.");
 			putScoreTable('-');
 			goNextFrame();
 		}
-		
-		else if ( currentRoll == 2 ) {
-			putScoreTable((char)pinDown);
+
+		else if (currentRoll == 2) {
+			putScoreTable((char) pinDown);
 			goNextFrame();
 		}
 
@@ -75,10 +74,15 @@ public class BowlingGame {
 		}
 	}
 
+	private void generateStrike() {
+
+	}
+
 	private void goNextRoll() {
 		currentRoll++;
 		System.out.println("다음 공을 던질 준비를 합니다.");
-		System.out.println("다음번에 " + currentPin + "핀을 치면 스페어처리를 할 수 있어요! 힘내세요!\n");
+		System.out.println("다음번에 " + currentPin
+				+ "핀을 치면 스페어처리를 할 수 있어요! 힘내세요!\n");
 	}
 
 	private void goNextFrame() {
@@ -89,6 +93,8 @@ public class BowlingGame {
 	}
 
 	private void putScoreTable(char pinDown) {
-			scoreTable.put(frameRoll[currentFrame][currentRoll], pinDown);
+	}
+
+	public void getTable() {
 	}
 }

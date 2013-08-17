@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 
-public class BowligGameTest extends TestCase {
+public class BowlingGameTest extends TestCase {
 
 	private BowlingGame game;
 
@@ -40,5 +40,13 @@ public class BowligGameTest extends TestCase {
 		game.roll(0);
 		assertEquals(5, game.getCurrentFrame()); assertEquals(2, game.getCurrentRoll());
 		game.roll(10);
+		
+		game.getTable();
+	}
+	
+	
+	public void testScore() throws Exception {
+		game.roll(3);
+		game.roll(7);
 	}
 }
