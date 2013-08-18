@@ -1,40 +1,45 @@
 package frame;
 
-import java.util.ArrayList;
-
 import roll.Strike;
-
-import java.util.List;
-
 import roll.Roll;
 
 public class Frame {
-	private List<Roll> Rolls = new ArrayList<Roll>();
+	private Roll firstRoll = null;
+	private Roll secondRoll = null;
 	private int frameScore;
+	private int totalScore;
 
 	public Frame() {
 	}
 
-	public void initialize() {
-		Rolls.add(new Roll());
-		Rolls.add(new Roll());
-	}
-
-	public int getSize() {
-		return Rolls.size();
+	public Frame(int pinDown) {
+		if ( firstRoll != null )
+			secondRoll = new Roll(pinDown);
+		
+		else if ( firstRoll == null) {
+			if ( pinDown == 10 )
+				setStrike();
+			else 
+				firstRoll = new Roll(pinDown);
+		}
 	}
 
 	public void setStrike() {
-		Rolls.add(new Strike());
-		Rolls.add(new Roll());
+		firstRoll = new Strike();
 		frameScore = 10;
 	}
 
 	public int getScore() {
-		if (Rolls.get(0).isStrike())
+		if (firstRoll.isStrike())
 			return frameScore;
 		else
 			return 0;
 	}
 
+	public boolean isStrike() {
+		if ( firstRoll.isStrike() )
+			return true;
+		else
+			return false;
+	}
 }
