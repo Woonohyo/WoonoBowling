@@ -3,7 +3,6 @@ package frame;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.BowlingGame;
 import roll.Spare;
 import roll.Strike;
 import roll.Roll;
@@ -92,12 +91,14 @@ public class Frame {
 	}
 
 	public String getSymbols() {
-		char first = rolls.get(0).getSymbol();
+		char first = ' ';
 		char second = ' ';
 
+		if ( rolls.size() >= 1 )
+			first = rolls.get(0).getSymbol();
 		if ( rolls.size() == 2 )
 			second = rolls.get(1).getSymbol();
-		
+			
 		String result = Character.toString(first) + " " + Character.toString(second);
 		return result;
 	}
