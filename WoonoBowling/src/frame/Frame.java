@@ -1,5 +1,6 @@
 package frame;
 
+import game.BowlingGame;
 import roll.Strike;
 import roll.Roll;
 
@@ -8,13 +9,16 @@ public class Frame {
 	private Roll secondRoll = null;
 	private int frameScore;
 	private int totalScore;
+	private int currentPin = 10;
 
 	public Frame() {
 	}
 
 	public Frame(int pinDown) {
-		if ( firstRoll != null )
+		if ( firstRoll != null ) {
 			secondRoll = new Roll(pinDown);
+			BowlingGame.goNextFrame();
+		}
 		
 		else if ( firstRoll == null) {
 			if ( pinDown == 10 )

@@ -16,7 +16,7 @@ public class BowlingGame {
 			goNextFrame();
 	}
 
-	private void goNextFrame() {
+	public static void goNextFrame() {
 		System.out.println("다음 프레임으로 넘어갑니다.");
 		currentFrame++;
 	}
@@ -26,5 +26,9 @@ public class BowlingGame {
 
 	public int getCurrentFrame() {
 		return currentFrame + 1;
+	}
+
+	public int getFrameScore(int frame) {
+		return scoreBoard.get(frame - 1).getScore();
 	}
 }
