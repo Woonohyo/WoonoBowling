@@ -11,7 +11,7 @@ public class FrameTest extends TestCase {
 	}
 	
 	public void testCreateStrikeFrame() throws Exception {
-		frame.setStrike();
-		assertEquals(10, frame.getScore());
+		frame.setStrikeFrame();
+		assertEquals(10, frame.getFrameScore());
 	}
 }
