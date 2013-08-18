@@ -28,13 +28,13 @@ public class Frame {
 		else return false;
 	}
 
-	private void setRegularFrame(int pinDown) {
+	public void setRegularFrame(int pinDown) {
 		rolls.add(new Roll(pinDown));
 		frameScore = rolls.get(0).getPinDown() + rolls.get(1).getPinDown();
 		System.out.println("이번 프레임은 오픈 프레임입니다.");
 	}
 
-	private void setSpareFrame(int pinDown) {
+	public void setSpareFrame(int pinDown) {
 		rolls.add(new Spare(pinDown));
 		frameScore = 10;
 		System.out.println("이번 프레임은 스페어입니다.");
@@ -55,6 +55,18 @@ public class Frame {
 			return true;
 		else
 			return false;
+	}
+
+	public boolean isSpare() {
+		if ( rolls.get(1).isSpare() )
+			return true;
+		else return false;
+	}
+	
+	public boolean isOpen() {
+		if ( isSpare() || isStrike() )
+			return false;
+		else return true;
 	}
 
 	public boolean isDone() {
@@ -81,9 +93,13 @@ public class Frame {
 
 	public String getSymbols() {
 		char first = rolls.get(0).getSymbol();
-		char second = rolls.get(1).getSymbol();
-		String result = Character.toString(first) + Character.toString(second);
+		char second = ' ';
+
+		if ( rolls.size() == 2 )
+			second = rolls.get(1).getSymbol();
 		
+		String result = Character.toString(first) + " " + Character.toString(second);
 		return result;
 	}
+
 }

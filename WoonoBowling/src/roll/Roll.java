@@ -28,4 +28,10 @@ public class Roll {
 	public int getPinDown() {
 		return pinDown;
 	}
+
+	public boolean isSpare() {
+		if ( symbol == '/' )
+			return true;
+		return false;
+	}
 }

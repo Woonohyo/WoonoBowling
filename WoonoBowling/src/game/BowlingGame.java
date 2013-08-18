@@ -49,11 +49,15 @@ public class BowlingGame {
 			System.out.println((i + 1) + "프레임: " + scoreBoard.get(i).getSymbols() + scoreBoard.get(i).getFrameScore());
 	}
 
-	public int getCurrentFrame() {
+	public int getCurrentFrameNum() {
 		return currentFrame + 1;
 	}
 
 	public int getFrameScore(int frame) {
 		return scoreBoard.get(frame - 1).getFrameScore();
+	}
+
+	public Frame getCurrentFrame() {
+		return scoreBoard.get(currentFrame - 1);
 	}
 }
