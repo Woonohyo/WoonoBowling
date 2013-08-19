@@ -15,16 +15,18 @@ public class Frame {
 	public Frame() {
 	}
 
-	private boolean isFirstRollStrike (int pinDown) {
-		if ( rolls.size() == 0 && pinDown == 10)
+	private boolean isFirstRollStrike(int pinDown) {
+		if (rolls.size() == 0 && pinDown == 10)
 			return true;
-		else return false;
+		else
+			return false;
 	}
 
-	private boolean isSecondRoll() {
-		if ( rolls.size() == 1 )
+	protected boolean isSecondRoll() {
+		if (rolls.size() == 1)
 			return true;
-		else return false;
+		else
+			return false;
 	}
 
 	public void setRegularFrame(int pinDown) {
@@ -45,45 +47,50 @@ public class Frame {
 		System.out.println("이번 프레임은 스트라이크입니다.");
 	}
 
+	public boolean isStrike() {
+		if (rolls.get(0).isStrike())
+			return true;
+		else
+			return false;
+	}
+	
 	public int getFrameScore() {
 		return frameScore;
 	}
 
-	public boolean isStrike() {
-		if ( rolls.get(0).isStrike() )
+	public boolean isSpare() {
+		if (rolls.get(1).isSpare())
 			return true;
 		else
 			return false;
 	}
 
-	public boolean isSpare() {
-		if ( rolls.get(1).isSpare() )
-			return true;
-		else return false;
-	}
-	
 	public boolean isOpen() {
-		if ( isSpare() || isStrike() )
+		if (isSpare() || isStrike())
 			return false;
-		else return true;
+		else
+			return true;
 	}
 
 	public boolean isDone() {
-		if ( rolls.size() == 2)
+		if (rolls.size() == 2)
 			return true;
 		else
 			return false;
 	}
 
-	public void addRoll(int pinDown) {
-		if ( isSecondRoll() ) {
-			if ( rolls.get(0).getPinDown() + pinDown == 10 )
+	public void addRoll(int pinDown) throws GameOverException {
+		if (isSecondRoll()) {
+			if (rolls.get(0).getPinDown() + pinDown == 10)
 				setSpareFrame(pinDown);
-			else setRegularFrame(pinDown);
+			else
+				setRegularFrame(pinDown);
 		}
-		
-		else if ( isFirstRollStrike(pinDown) ) setStrikeFrame();
-		else rolls.add(new Roll(pinDown));
+
+		else if (isFirstRollStrike(pinDown))
+			setStrikeFrame();
+		else
+			rolls.add(new Roll(pinDown));
 	}
 
 	public int getNumOfRoll() {
@@ -93,13 +100,13 @@ public class Frame {
 	public String getSymbols() {
 		char first = ' ';
 		char second = ' ';
-
-		if ( rolls.size() >= 1 )
+		
+		if (rolls.size() >= 1)
 			first = rolls.get(0).getSymbol();
-		if ( rolls.size() == 2 )
+		if (rolls.size() == 2)
 			second = rolls.get(1).getSymbol();
-			
-		String result = Character.toString(first) + " " + Character.toString(second);
+
+		String result = Character.toString(first) + " " + Character.toString(second) + "  ";
 		return result;
 	}
 

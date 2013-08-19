@@ -41,4 +41,19 @@ public class BowlingGameTest extends TestCase {
 		game.roll(8);
 		assertEquals(8, game.getFrameScore(6));
 	}
+	
+	public void testCalculatePerfectGame() throws Exception {
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+		game.roll(10);
+	}
 }
