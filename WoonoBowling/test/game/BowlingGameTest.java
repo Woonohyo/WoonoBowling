@@ -1,16 +1,16 @@
 package game;
 
+import frame.GameOverException;
 import junit.framework.TestCase;
 
 public class BowlingGameTest extends TestCase {
 	private BowlingGame game;
-
+	
 	@Override
 	protected void setUp() throws Exception {
 		game = new BowlingGame();
-		game.initialize();
 	}
-
+	
 	public void testRoll() throws Exception {
 		assertEquals(1, game.getCurrentFrameNum());
 		game.roll(10);
@@ -40,9 +40,20 @@ public class BowlingGameTest extends TestCase {
 		game.roll(0);
 		game.roll(8);
 		assertEquals(8, game.getFrameScore(6));
+		
+		game.roll(10);
+		
+		game.roll(7);
+		game.roll(3);
+		
+		game.roll(1);
+		game.roll(0);
+		
+		game.roll(7);
+		game.roll(2);
 	}
 	
-	public void testCalculatePerfectGame() throws Exception {
+	public void testPerfectGame() throws Exception {
 		game.roll(10);
 		game.roll(10);
 		game.roll(10);

@@ -1,6 +1,9 @@
 package frame;
 
 import frame.Frame;
+import static game.BowlingGame.CURRENT;
+import static game.BowlingGame.PREVIOUS;
+import static game.BowlingGame.PREVIOUS2;
 import game.BowlingGame;
 import junit.framework.TestCase;
 
@@ -14,7 +17,6 @@ public class FrameTest extends TestCase {
 		frame = new Frame();
 		lastFrame = new LastFrame();
 		game = new BowlingGame();
-		game.initialize();
 	}
 
 	public void testCreateStrikeFrame() throws Exception {
@@ -26,14 +28,14 @@ public class FrameTest extends TestCase {
 	public void testGetSymbols() throws Exception {
 		game.roll(3);
 		game.roll(7);
-		assertEquals("3 /", game.getCurrentFrame().getSymbols());
+		assertEquals("3 /  ", game.getFrame(CURRENT).getSymbols());
 
 		game.roll(4);
 		game.roll(5);
-		assertEquals("4 5", game.getCurrentFrame().getSymbols());
+		assertEquals("4 5  ", game.getFrame(CURRENT).getSymbols());
 
 		game.roll(10);
-		assertEquals("X  ", game.getCurrentFrame().getSymbols());
+		assertEquals("X    ", game.getFrame(CURRENT).getSymbols());
 	}
 	
 	public void testLastFrame() throws Exception {
@@ -50,5 +52,10 @@ public class FrameTest extends TestCase {
 		lastFrame.addRoll(6);
 		assertEquals(9, lastFrame.getFrameScore());
 		assertEquals("3 6  ", lastFrame.getSymbols());
+	}
+	
+	public void testCalculateFrameScore() throws Exception {
+		
+		
 	}
 }

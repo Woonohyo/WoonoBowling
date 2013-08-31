@@ -9,12 +9,23 @@ import roll.Roll;
 
 public class Frame {
 	private List<Roll> rolls = new ArrayList<Roll>();
-	private int frameScore;
-	private int totalScore;
+	private int frameScore = 0;
+	private int totalScore = 0;
 
 	public Frame() {
 	}
 
+	public void addRoll(int pinDown) throws GameOverException {
+		if (isSecondRoll()) {
+			if (rolls.get(0).getPinDown() + pinDown == 10)
+				setSpareFrame(pinDown);
+			else setRegularFrame(pinDown);
+		}
+		
+		else if (isFirstRollStrike(pinDown)) setStrikeFrame();
+		else rolls.add(new Roll(pinDown));
+	}
+	
 	private boolean isFirstRollStrike(int pinDown) {
 		if (rolls.size() == 0 && pinDown == 10)
 			return true;
@@ -59,6 +70,8 @@ public class Frame {
 	}
 
 	public boolean isSpare() {
+		if (rolls.size() == 1)
+			return false;
 		if (rolls.get(1).isSpare())
 			return true;
 		else
@@ -79,19 +92,6 @@ public class Frame {
 			return false;
 	}
 
-	public void addRoll(int pinDown) throws GameOverException {
-		if (isSecondRoll()) {
-			if (rolls.get(0).getPinDown() + pinDown == 10)
-				setSpareFrame(pinDown);
-			else
-				setRegularFrame(pinDown);
-		}
-
-		else if (isFirstRollStrike(pinDown))
-			setStrikeFrame();
-		else
-			rolls.add(new Roll(pinDown));
-	}
 
 	public int getNumOfRoll() {
 		return rolls.size();
@@ -110,4 +110,27 @@ public class Frame {
 		return result;
 	}
 
+	public void setTotalNull() {
+		this.totalScore = '\0';
+	}
+
+	public int getTotalScore() {
+		return totalScore;
+	}
+
+	public void setTotalScore(int bonusScore, int prevScore) {
+		this.totalScore = frameScore + bonusScore + prevScore;
+	}
+
+	public int getFirstPinDown() {
+		return rolls.get(0).getPinDown();
+	}
+
+	public int getSecondPinDown() {
+		return rolls.get(1).getPinDown();
+	}
+
+	public void addPrevTotal(int prevTotal) {
+		this.totalScore += prevTotal;
+	}
 }

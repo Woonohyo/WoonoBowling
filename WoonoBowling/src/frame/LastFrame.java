@@ -10,7 +10,7 @@ import roll.Strike;
 public class LastFrame extends Frame {
 	private List<Roll> rolls = new ArrayList<Roll>();
 	private int frameScore = 0;
-	private int totalScore;
+	private int totalScore = 0;
 	private boolean isFrameDone = false;
 
 	public LastFrame() {
@@ -22,10 +22,8 @@ public class LastFrame extends Frame {
 
 	public void addRoll(int pinDown) throws GameOverException {
 		if ( isLastRoll() ) {
-			if ( pinDown == 10 ) 
-				rolls.add(new Strike());
-			else 
-				rolls.add(new Roll(pinDown));
+			if ( pinDown == 10 ) rolls.add(new Strike());
+			else rolls.add(new Roll(pinDown));
 			endThisFrame();
 		}
 		
@@ -34,9 +32,8 @@ public class LastFrame extends Frame {
 				rolls.add(new Roll(pinDown));
 				endThisFrame();
 			}
-			else if ( rolls.get(0).getPinDown() + pinDown == 10 ) {
+			else if ( rolls.get(0).getPinDown() + pinDown == 10 )
 				rolls.add(new Spare(pinDown));
-			}
 			else if ( pinDown == 10 )
 				rolls.add(new Strike());
 		}

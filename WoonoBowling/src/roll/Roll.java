@@ -12,6 +12,8 @@ public class Roll {
 		this.pinDown = pinDown;
 		this.symbol = (char)(pinDown + '0');
 		System.out.println(pinDown + "핀을 쓰러뜨렸습니다.");
+		if ( pinDown == 0 )
+			System.out.println("바봌ㅋㅋ");
 	}
 
 	public char getSymbol() {

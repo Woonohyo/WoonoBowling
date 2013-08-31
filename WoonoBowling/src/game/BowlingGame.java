@@ -9,11 +9,20 @@ import frame.GameOverException;
 import frame.LastFrame;
 
 public class BowlingGame {
+	public static int TOTAL_SCORE = 0;
+	public static int CURRENT = 0;
+	public static int PREVIOUS = 1;
+	public static int PREVIOUS2 = 2;
+	public static int PREVIOUS3 = 3;
 	private List<Frame> scoreBoard = new ArrayList<Frame>();
-	private static int currentFrame = 0;
-	private int numOfRoll = 0;
+	private static int currentFrame;
+	private int numOfRoll;
+	private Score score = new Score();
 
-	public void initialize() {
+
+	public BowlingGame() {
+		currentFrame = 0;
+		numOfRoll = 0;
 		scoreBoard.add(new Frame());
 		scoreBoard.add(new Frame());
 		scoreBoard.add(new Frame());
@@ -27,30 +36,33 @@ public class BowlingGame {
 	}
 
 	public void roll(int pinDown) throws GameOverException {
-		numOfRoll = scoreBoard.get(currentFrame).getNumOfRoll();
-		if (numOfRoll == 0) 
-			System.out.println("이번 프레임은 " + (currentFrame + 1) + "번째 프레임입니다.");
-		System.out.print((numOfRoll + 1) + "번째 공을 굴립니다!...........");
-
+		printStatus();
 		scoreBoard.get(currentFrame).addRoll(pinDown);
 		if (currentFrame < 9 && scoreBoard.get(currentFrame).isStrike())
 			goNextFrame();
-		else if (currentFrame < 9 && scoreBoard.get(currentFrame).isDone())
+		if (currentFrame < 9 && scoreBoard.get(currentFrame).isDone())
 			goNextFrame();
-		if ( currentFrame == 9 && scoreBoard.get(currentFrame).isDone())
+		if (currentFrame == 9 && scoreBoard.get(currentFrame).isDone())
 			endGame();
+	}
+
+	private void printStatus() {
+		numOfRoll = scoreBoard.get(currentFrame).getNumOfRoll();
+		if (numOfRoll == 0)
+			System.out.println("이번 프레임은 " + (currentFrame + 1) + "번째 프레임입니다.");
+		System.out.print((numOfRoll + 1) + "번째 공을 굴립니다!...........");
 	}
 
 	private void endGame() {
 		printScoreBoard();
 		System.out.println("Game End");
-		
 	}
 
 	public void goNextFrame() {
 		System.out.println("다음 프레임으로 넘어갑니다.\n");
-		currentFrame++;
+		score.calcTotalScore(this);
 		printScoreBoard();
+		currentFrame++;
 	}
 
 	public void printScoreBoard() {
@@ -58,7 +70,10 @@ public class BowlingGame {
 			int frameNum = i + 1;
 			String symbols = scoreBoard.get(i).getSymbols();
 			int eachFrameScore = scoreBoard.get(i).getFrameScore();
-			System.out.format("%2d frame: %6s  Frame Score: %3d\n", frameNum, symbols, eachFrameScore);
+			int eachTotalScore = scoreBoard.get(i).getTotalScore();
+
+			System.out.format("%2d frame: %6s  Frame Score: %3d  Total Score: %3d\n", frameNum,
+					symbols, eachFrameScore, eachTotalScore);
 		}
 		System.out.println("\n\n");
 	}
@@ -71,7 +86,11 @@ public class BowlingGame {
 		return scoreBoard.get(frame - 1).getFrameScore();
 	}
 
-	public Frame getCurrentFrame() {
-		return scoreBoard.get(currentFrame - 1);
+	public Frame getFrame(int adjust) {
+		int index = currentFrame - adjust;
+		if (currentFrame - adjust < 0)
+			return new Frame();
+		return scoreBoard.get(index);
 	}
+
 }
