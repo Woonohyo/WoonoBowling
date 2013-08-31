@@ -36,10 +36,13 @@ public class LastFrame extends Frame {
 				rolls.add(new Spare(pinDown));
 			else if ( pinDown == 10 )
 				rolls.add(new Strike());
+			else rolls.add(new Roll(pinDown));
 		}
 		
-		else if ( pinDown == 10 ) rolls.add(new Strike());
-		else rolls.add(new Roll(pinDown));
+		else if ( pinDown == 10 ) 
+			rolls.add(new Strike());
+		else 
+			rolls.add(new Roll(pinDown));
 	}
 
 	private void endThisFrame() throws GameOverException {
@@ -91,6 +94,22 @@ public class LastFrame extends Frame {
 	
 	public int getNumOfRoll() {
 		return rolls.size();
+	}
+	
+	public void setTotalScore(int bonus, int prev) {
+		totalScore = frameScore + prev + bonus;
+	}
+	
+	public int getTotalScore() {
+		return totalScore;
+	}
+	
+	public int getFirstPinDown() {
+		return rolls.get(0).getPinDown();
+	}
+
+	public int getSecondPinDown() {
+		return rolls.get(1).getPinDown();
 	}
 	
 }

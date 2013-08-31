@@ -10,7 +10,7 @@ public class BowlingGameTest extends TestCase {
 	protected void setUp() throws Exception {
 		game = new BowlingGame();
 	}
-	
+
 	public void testRoll() throws Exception {
 		assertEquals(1, game.getCurrentFrameNum());
 		game.roll(10);
@@ -66,5 +66,25 @@ public class BowlingGameTest extends TestCase {
 		game.roll(10);
 		game.roll(10);
 		game.roll(10);
+	}
+	public void testExample() throws Exception {
+		game.roll(9);
+		game.roll(1);
+		game.roll(8);
+		game.roll(0);
+		game.roll(10);
+		game.roll(10);
+		game.roll(8);
+		game.roll(0);
+		game.roll(10);
+		game.roll(8);
+		game.roll(1);
+		game.roll(9);
+		game.roll(1);
+		game.roll(8);
+		game.roll(1);
+		game.roll(10);
+		game.roll(9);
+		game.roll(1);
 	}
 }

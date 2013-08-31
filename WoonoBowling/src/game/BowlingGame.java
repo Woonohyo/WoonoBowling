@@ -54,6 +54,7 @@ public class BowlingGame {
 	}
 
 	private void endGame() {
+		score.calcLastFrame(this);
 		printScoreBoard();
 		System.out.println("Game End");
 	}

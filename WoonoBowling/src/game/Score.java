@@ -22,11 +22,6 @@ public class Score {
 			calcCurrentFrame(game);
 		}
 
-		if (currentFrame == 10) {
-			calcPreviousFrame2(game);
-			calcPreviousFrame(game);
-		}
-
 		if (isElseFrame(currentFrame)) {
 			calcPreviousFrame2(game);
 			calcPreviousFrame(game);
@@ -45,7 +40,6 @@ public class Score {
 		Frame current = game.getFrame(CURRENT);
 		if (current.isOpen())
 			current.setTotalScore(NO_BONUS, prev.getTotalScore());
-
 	}
 
 	private void calcPreviousFrame(BowlingGame game) {
@@ -60,6 +54,19 @@ public class Score {
 			prev.setTotalScore(addOneBonus(game, 0), prev2.getTotalScore());
 		if (prev.isStrike() && !(current.isStrike()))
 			prev.setTotalScore(current.getFrameScore(), prev2.getTotalScore());
+	}
+
+	private void calcPreviousLastFrame(BowlingGame game) {
+		Frame prev2 = game.getFrame(PREVIOUS2);
+		Frame prev = game.getFrame(PREVIOUS);
+		Frame current = game.getFrame(CURRENT);
+		
+		if ( prev.isSpare() )
+			prev.setTotalScore(current.getFirstPinDown(), prev2.getTotalScore());
+		if ( prev.isStrike() )
+			prev.setTotalScore(current.getFirstPinDown() + current.getSecondPinDown(), prev2.getTotalScore());
+		else
+			prev.setTotalScore(NO_BONUS, prev2.getTotalScore());
 	}
 
 	private void calcPreviousFrame2(BowlingGame game) {
@@ -104,4 +111,14 @@ public class Score {
 
 		return false;
 	}
+
+	public void calcLastFrame(BowlingGame game) {
+		Frame prev = game.getFrame(PREVIOUS);
+		Frame current = game.getFrame(CURRENT);
+
+		calcPreviousFrame2(game);
+		calcPreviousLastFrame(game);
+		current.setTotalScore(NO_BONUS, prev.getTotalScore());
+	}
+
 }
