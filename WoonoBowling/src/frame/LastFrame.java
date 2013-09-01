@@ -49,7 +49,8 @@ public class LastFrame extends Frame {
 		for ( int i = 0; i < rolls.size(); i++ )
 			frameScore += rolls.get(i).getPinDown();
 		isFrameDone = true;
-		//throw new GameOverException("게임이 종료되었습니다.");
+		if ( isFrameDone )
+			throw new GameOverException("게임이 종료되었습니다!");
 	}
 
 	private boolean isLastRoll() {

@@ -38,6 +38,7 @@ public class Score {
 	private void calcCurrentFrame(BowlingGame game) {
 		Frame prev = game.getFrame(PREVIOUS);
 		Frame current = game.getFrame(CURRENT);
+		
 		if (current.isOpen())
 			current.setTotalScore(NO_BONUS, prev.getTotalScore());
 	}
